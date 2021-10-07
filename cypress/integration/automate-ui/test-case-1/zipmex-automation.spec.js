@@ -1,6 +1,6 @@
 context("zipmex Web UI", () => {
   it("buy USDTUSD", () => {
-    const url = "https://trade.zipmex.com/trade";
+    const url = "https://trade.zipmex.com/global/trade";
 
     cy.visit(url);
 
