@@ -14,11 +14,13 @@ context("zipmex Web UI", () => {
             .click()
             .then(() => {
               cy.get(
-                ":nth-child(1) > :nth-child(1) > .form-group.order-entry__limit-price > .ap-input__input-box > .ant-input-number > .ant-input-number-input-wrap > .ant-input-number-input",
+                "[name='limitPrice']",
                 {
                   timeout: 10000,
                 }
-              )
+                ).eq(0)
+                
+              
                 .should("be.visible")
                 .as("price");
               cy.get(
@@ -42,11 +44,11 @@ context("zipmex Web UI", () => {
         });
 
       let newPrice = 0;
+      let originalPrice = 0;
       cy.get("@price")
         .invoke("val")
         .then((price) => {
-          // price = '1.0014'
-          const originalPrice = parseFloat(price); //convert string to float
+          originalPrice = parseFloat(price); //convert string to float
           newPrice = originalPrice + (originalPrice * 0.1) / 100; // price + (price * 0.1%)
           newPrice = newPrice.toFixed(4);
         })
@@ -61,15 +63,8 @@ context("zipmex Web UI", () => {
             .invoke("val")
             .then((total) => {
               cy.log(total);
-              cy.writeFile(
-                "output/Test Result-Buy.md",
-                [
-                  "Trade USDTUSD",
-                  "with side = buy",
-                  `with price = ${newPrice}`,
-                  "with amount = 1.00",
-                  `Total (USD) = ${total}`,
-                ].join("\n")
+              console.log(
+                `Trade USDTUSD \n with side = buy \n with price = ${originalPrice} \n with amount = 1.00 \n Total (USD) = ${total}`,              
               );
             });
         });

@@ -14,12 +14,10 @@ Automate UI for Zipmex
 
 #### How to run
 
-1. Clone Project from `https://github.com/AingChalisa/zipmex-test.git`
+1. Clone Project
 
-2. Access to `zipmex-test` folder
+2. Change directory to `zipmex-chalisa` folder
 
-3. Run `npm install` to install cypress
+3. Run `npx cypress open` to open cypress window
 
-4. Run `npx cypress open` to open cypress window
-
-5. Enjoy!!
+4. Enjoy!!
